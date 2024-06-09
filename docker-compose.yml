@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  cgo-tutorial-3:
+    image: cgo-tutorial-3
+    container_name: cgo-tutorial-3
+    restart: unless-stopped
+    networks:
+      - cgo-tutorial-3
+
+networks:
+  cgo-tutorial-3:
+    driver: bridge

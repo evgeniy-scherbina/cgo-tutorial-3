@@ -1,1 +1,1 @@
-docker build -t emulator .
+docker build -t cgo-tutorial-3 .
