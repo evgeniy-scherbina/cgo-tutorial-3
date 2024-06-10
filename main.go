@@ -33,10 +33,25 @@ func memoryLeak() {
 	}
 }
 
+func func1() {
+	func2()
+}
+
+func func2() {
+	for {
+		var uuid *C.uchar
+		uuid = (*C.uchar)(C.malloc(16))
+		_ = uuid
+
+		time.Sleep(time.Millisecond * 10)
+	}
+}
+
 func main() {
 	// and now it's simple to use
 	myuuid := uuid() // this is a go string now
 	fmt.Println(myuuid)
 
-	memoryLeak()
+	go memoryLeak()
+	func1()
 }
