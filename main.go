@@ -1,27 +1,27 @@
 package main
 
 // #include <uuid/uuid.h>
+// #include <stdlib.h>
+//
+// // create a uuid function in C to return a uuid char*
+// char* _go_uuid() {
+//   uuid_t uuid;
+//   uuid_generate_random(uuid);
+//   char *str = malloc(37);
+//   uuid_unparse_lower(uuid, str);
+//   return str;
+// }
 import "C"
 import "fmt"
 
-func main() {
-	{
-		var uuid *C.uchar
-		uuid = (*C.uchar)(C.malloc(16))
-		var uuid_str *C.char
-		uuid_str = (*C.char)(C.malloc(37))
-		C.uuid_generate_random(uuid)
-		C.uuid_unparse(uuid, uuid_str)
-		fmt.Println(C.GoString(uuid_str))
-	}
+// uuid generates a UUID using the C shared library.
+// It returns a Go string.
+func uuid() string {
+	return C.GoString(C._go_uuid())
+}
 
-	{
-		var uuid *C.uchar
-		uuid = (*C.uchar)(C.malloc(16))
-		var uuid_str *C.char
-		uuid_str = (*C.char)(C.malloc(37))
-		C.uuid_generate_random(uuid)
-		C.uuid_unparse(uuid, uuid_str)
-		fmt.Println(C.GoString(uuid_str))
-	}
+func main() {
+	// and now it's simple to use
+	myuuid := uuid() // this is a go string now
+	fmt.Println(myuuid)
 }
