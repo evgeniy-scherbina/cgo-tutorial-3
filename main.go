@@ -20,8 +20,18 @@ func uuid() string {
 	return C.GoString(C._go_uuid())
 }
 
+func memoryLeak() {
+	for {
+		var uuid *C.uchar
+		uuid = (*C.uchar)(C.malloc(16))
+		_ = uuid
+	}
+}
+
 func main() {
 	// and now it's simple to use
 	myuuid := uuid() // this is a go string now
 	fmt.Println(myuuid)
+
+	memoryLeak()
 }

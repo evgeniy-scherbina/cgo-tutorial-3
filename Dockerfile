@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-RUN apt-get update && apt-get install -y wget lsof git build-essential uuid-dev
+RUN apt-get update && apt-get install -y wget lsof git build-essential uuid-dev bpfcc-tools
 
 RUN wget https://go.dev/dl/go1.22.4.linux-amd64.tar.gz
 
@@ -13,7 +13,7 @@ RUN tar -xvzf go1.22.4.linux-amd64.tar.gz -C /usr/local
 # ln -s /path/to/file /path/to/symlink
 RUN ln -s /usr/local/go/bin/go /usr/local/bin/go
 
-RUN mkdir /tmp/7
+RUN mkdir /tmp/9
 
 # Install cgo-tutorial-3
 RUN git clone https://github.com/evgeniy-scherbina/cgo-tutorial-3
