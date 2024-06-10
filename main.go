@@ -12,7 +12,10 @@ package main
 //   return str;
 // }
 import "C"
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 // uuid generates a UUID using the C shared library.
 // It returns a Go string.
@@ -25,6 +28,8 @@ func memoryLeak() {
 		var uuid *C.uchar
 		uuid = (*C.uchar)(C.malloc(16))
 		_ = uuid
+
+		time.Sleep(time.Millisecond * 10)
 	}
 }
 
